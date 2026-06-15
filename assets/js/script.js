@@ -1,7 +1,33 @@
 $(document).ready(function() {
 
     // inicio de sesion
-    
+    $('#loginForm').submit(function(e) {
+        e.preventDefault(); 
+        
+        const email = $('#email').val();
+        const pass = $('#password').val();
+
+        if (email === 'test@wallet.com' && pass === '1234') {
+            $('#alert-container').html('<div class="alert alert-success">¡Inicio exitoso! Redirigiendo...</div>');
+            
+            // Datos iniciales de prueba
+            if (!localStorage.getItem('saldo')) {
+                localStorage.setItem('saldo', '25000');
+                const mockTransacciones = [
+                    { tipo: 'transferencia', detalle: 'De Maria Lopez', monto: 3000, fecha: '12/10/2023' },
+                    { tipo: 'compra', detalle: 'Supermercado', monto: -4500, fecha: '14/10/2023' },
+                    { tipo: 'deposito', detalle: 'Depósito en Cajero', monto: 10000, fecha: '15/10/2023' }
+                ];
+                localStorage.setItem('movimientos', JSON.stringify(mockTransacciones));
+            }
+            
+            setTimeout(function() {
+                window.location.href = 'menu.html'; 
+            }, 1500);
+        } else {
+            $('#alert-container').html('<div class="alert alert-danger">Credenciales incorrectas (Usa test@wallet.com / 1234)</div>');
+        }
+    });
 
 
     // menu
