@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Últimos Movimientos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="wallet-container">
+            <h2 class="text-center mb-4 fw-bold text-primary">Últimos Movimientos</h2>
+            
+            <div class="mb-3">
+                <label class="form-label text-muted">Filtrar por tipo:</label>
+                <select id="filtroTransacciones" class="form-select">
+                    <option value="todos">Todos los movimientos</option>
+                    <option value="deposito">Depósitos</option>
+                    <option value="transferencia">Transferencias</option>
+                    <option value="compra">Compras</option>
+                </select>
+            </div>
+
+            <ul id="listaMovimientos" class="list-group mb-4">
+                </ul>
+            
+            <a href="menu.html" class="btn btn-light w-100 py-2 text-secondary fw-bold">Volver al Menú Principal</a>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="./assets/js/script.js"></script>
+</body>
+</html>

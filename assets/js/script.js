@@ -93,6 +93,52 @@ $(document).ready(function() {
 
 
     // transacciones
-    
+    if ($('#listaMovimientos').length) {
+        let listaTransacciones = JSON.parse(localStorage.getItem('movimientos') || '[]');
+
+        function getTipoTransaccion(tipo) {
+            switch(tipo) {
+                case 'compra': return 'Compra en comercio';
+                case 'deposito': return 'Ingreso de dinero';
+                case 'transferencia': return 'Transferencia';
+                default: return 'Operación';
+            }
+        }
+
+        function mostrarUltimosMovimientos(filtro) {
+            $('#listaMovimientos').empty(); 
+
+            let movimientosFiltrados = listaTransacciones.filter(mov => filtro === 'todos' || mov.tipo === filtro);
+
+            if (movimientosFiltrados.length === 0) {
+                $('#listaMovimientos').append('<li class="list-group-item text-center text-muted">No se encontraron movimientos.</li>');
+                return;
+            }
+
+            $.each(movimientosFiltrados, function(index, mov) {
+                let color = mov.monto > 0 ? 'bg-success' : 'bg-danger';
+                let signo = mov.monto > 0 ? '+' : '';
+                let tipoLegible = getTipoTransaccion(mov.tipo);
+
+                let li = `
+                    <li class="list-group-item d-flex justify-content-between align-items-center py-3">
+                        <div>
+                            <strong class="d-block">${tipoLegible}</strong>
+                            <small class="text-muted">${mov.detalle} - ${mov.fecha}</small>
+                        </div>
+                        <span class="badge ${color} rounded-pill fs-6">${signo} $${Math.abs(mov.monto).toLocaleString('es-AR')}</span>
+                    </li>
+                `;
+                $('#listaMovimientos').append(li);
+            });
+        }
+
+        mostrarUltimosMovimientos('todos');
+
+        $('#filtroTransacciones').change(function() {
+            let tipoSeleccionado = $(this).val();
+            mostrarUltimosMovimientos(tipoSeleccionado);
+        });
+    }
 
 });
