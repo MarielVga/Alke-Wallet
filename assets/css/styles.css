@@ -1,0 +1,48 @@
+body {
+    background-color: #f4f7f6; /* Color de fondo suave */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.wallet-container {
+    max-width: 400px;
+    margin: 40px auto;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.balance-card {
+    background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
+    color: white;
+    border-radius: 15px;
+    padding: 25px 20px;
+    text-align: center;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 10px rgba(13, 110, 253, 0.3);
+}
+
+.balance-card h5 {
+    font-size: 1rem;
+    font-weight: 400;
+    opacity: 0.9;
+}
+
+.balance-card h3 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+
+.contacto-item { 
+    cursor: pointer; transition: 0.2s;
+ }
+
+.contacto-item:hover { 
+    background-color: #f8f9fa; 
+}
+
+.contacto-item.active { 
+    background-color: #0d6efd; color: white;
+    }
