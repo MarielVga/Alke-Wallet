@@ -49,7 +49,31 @@ $(document).ready(function() {
 
 
     // deposito
-    
+    if ($('#formDeposito').length) {
+        let saldoActual = parseFloat(localStorage.getItem('saldo') || 0);
+        $('#saldoMostrado').text(`$${saldoActual.toLocaleString('es-AR')}`);
+
+        $('#formDeposito').submit(function(e) {
+            e.preventDefault();
+            let monto = parseFloat($('#monto').val());
+
+            if (monto > 0) {
+                saldoActual += monto;
+                localStorage.setItem('saldo', saldoActual);
+
+                let movimientos = JSON.parse(localStorage.getItem('movimientos') || '[]');
+                movimientos.unshift({ tipo: 'deposito', detalle: 'Depósito propio', monto: monto, fecha: new Date().toLocaleDateString() });
+                localStorage.setItem('movimientos', JSON.stringify(movimientos));
+
+                $('#leyendaDeposito').html(`<h5 class="text-success">Monto depositado: $${monto.toLocaleString('es-AR')}</h5>`);
+                $('#alert-container').html('<div class="alert alert-success">¡Depósito exitoso! Volviendo al menú...</div>');
+
+                setTimeout(function() {
+                    window.location.href = 'menu.html';
+                }, 2000);
+            }
+        });
+    }
 
 
     // enviar dinero
